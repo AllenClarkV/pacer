@@ -182,29 +182,40 @@ class _PacerState extends State<Pacer> {
                 subheading('WFPS Run'),
                 _formatDuration(_remaining),
                 const SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    heading('Pace Calculator'),
-                    _button('Clear', _resetFields, bg: const Color(0xffb0b0b0)),
-                  ],
-                ),
                 Column(children: [
                   SizedBox(
-                    height: 65,
-                    child: Row(children: [
-                      const Text('Distance: '),
-                      SizedBox(
-                        width: 100,
-                        child: _inputField('0.00', distance, isDecimal: true),
-                      ),
-                      Text(!unitswitch ? ' kilometers' : ' miles'),
-                    ]),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(children: [
+                          Text('Distance: '),
+                          SizedBox(
+                            width: 100,
+                            child:
+                                _inputField('0.00', distance, isDecimal: true),
+                          ),
+                          Text(!unitswitch ? ' km' : ' mi'),
+                        ]),
+                        SizedBox(
+                          child: ElevatedButton(
+                            onPressed: _resetFields,
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.red,
+                              elevation: 2,
+                              shadowColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                            ),
+                            child: Text('AC',
+                                style: const TextStyle(color: Colors.white)),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(
-                    height: 65,
                     child: Row(children: [
-                      const Text('Finish Time: '),
+                      const Text('Time: '),
                       _timeInput(hours, 'hh'),
                       const Text(' : '),
                       _timeInput(minutes, 'mm'),
@@ -218,9 +229,9 @@ class _PacerState extends State<Pacer> {
                       Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            _labelValueRow('Avg. speed: ',
+                            _labelValueRow('speed: ',
                                 !unitswitch ? metricspeed : imperialspeed),
-                            _labelValueRow('Avg. pace: ',
+                            _labelValueRow('pace: ',
                                 !unitswitch ? metricpace : imperialpace),
                           ]),
                       Column(children: [
@@ -248,6 +259,7 @@ class _PacerState extends State<Pacer> {
   Widget _inputField(String hint, TextEditingController controller,
       {bool isDecimal = false}) {
     return TextField(
+      style: TextStyle(color: Color(0xffFF9500)),
       controller: controller,
       textAlign: TextAlign.center,
       keyboardType: isDecimal
@@ -297,7 +309,10 @@ class _PacerState extends State<Pacer> {
         height: 65,
         child: Row(children: [
           Text(label),
-          Text(value),
+          Text(
+            value,
+            style: TextStyle(color: Color(0xffFF9500)),
+          ),
         ]),
       );
 }
