@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        scaffoldBackgroundColor: const Color(0xff1c1c1c),
+        scaffoldBackgroundColor: const Color(0xff141413),
         textTheme: ThemeData.dark().textTheme.apply(
               fontFamily: "Triton",
               bodyColor: Colors.white,
