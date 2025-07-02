@@ -186,8 +186,8 @@ class _PacerState extends State<Pacer> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                heading('Upcoming Race'),
-                subheading('WFPS Run'),
+                Visibility(visible: false, child: heading('Upcoming Race')),
+                Visibility(visible: false, child: subheading('WFPS Run')),
                 Visibility(visible: false, child: _formatDuration(_remaining)),
                 Visibility(visible: false, child: const SizedBox(height: 10)),
                 Column(children: [
@@ -242,17 +242,19 @@ class _PacerState extends State<Pacer> {
                             _labelValueRow('pace: ',
                                 !unitswitch ? metricpace : imperialpace),
                           ]),
-                      Column(children: [
-                        _button(
-                            !unitswitch ? 'metric' : 'imperial', _toggleUnit,
-                            bg: !unitswitch
-                                ? const Color(0xff505050)
-                                : const Color(0xffb0b0b0),
-                            elevation: !unitswitch ? 2 : 1),
-                        _button(
-                            'Calculate', () => setState(_calculatePaceAndSpeed),
-                            bg: const Color(0xffFF9500)),
-                      ])
+                      Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            _button(!unitswitch ? 'metric' : 'imperial',
+                                _toggleUnit,
+                                bg: !unitswitch
+                                    ? const Color(0xff505050)
+                                    : const Color(0xffb0b0b0),
+                                elevation: !unitswitch ? 2 : 1),
+                            _button('Calculate',
+                                () => setState(_calculatePaceAndSpeed),
+                                bg: const Color(0xffFF9500)),
+                          ])
                     ],
                   ),
                 ]),
