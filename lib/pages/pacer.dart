@@ -78,13 +78,21 @@ class _PacerState extends State<Pacer> {
     }
 
     final paceKm = 60 / speed;
-    final minKm = paceKm.floor();
-    final secKm = ((paceKm - minKm) * 60).round();
+    int minKm = paceKm.floor();
+    int secKm = ((paceKm - minKm) * 60).round();
+    if (secKm == 60) {
+      minKm += 1;
+      secKm = 0;
+    }
     metricpace = '$minKm:${secKm.toString().padLeft(2, '0')}/km';
 
     final paceMi = paceKm * 1.60934;
-    final minMi = paceMi.floor();
-    final secMi = ((paceMi - minMi) * 60).round();
+    int minMi = paceMi.floor();
+    int secMi = ((paceMi - minMi) * 60).round();
+    if (secMi == 60) {
+      minMi += 1;
+      secMi = 0;
+    }
     imperialpace = '$minMi:${secMi.toString().padLeft(2, '0')}/mi';
   }
 
@@ -180,8 +188,8 @@ class _PacerState extends State<Pacer> {
               children: [
                 heading('Upcoming Race'),
                 subheading('WFPS Run'),
-                _formatDuration(_remaining),
-                const SizedBox(height: 10),
+                Visibility(visible: false, child: _formatDuration(_remaining)),
+                Visibility(visible: false, child: const SizedBox(height: 10)),
                 Column(children: [
                   SizedBox(
                     child: Row(
