@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:pacer/pages/pacer.dart';
+import 'package:pacer/pages/striva.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,12 +22,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: const Color(0xff141413),
         textTheme: ThemeData.dark().textTheme.apply(
-              fontFamily: "Triton",
+              fontFamily: "Poppins",
               bodyColor: Colors.white,
               displayColor: Colors.white,
             ),
       ),
-      home: const Pacer(),
+      home: const Striva(),
     );
   }
 }
