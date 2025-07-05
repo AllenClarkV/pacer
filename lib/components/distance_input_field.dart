@@ -26,7 +26,11 @@ class _DistanceInputFieldState extends State<DistanceInputField> {
 
   @override
   Widget build(BuildContext context) {
-    final textStyle = TextStyle(color: activeColor, fontSize: 18);
+    final textStyle = TextStyle(
+      color: Colors.white,
+      fontSize: 18,
+      fontWeight: FontWeight.bold,
+    );
     final width = getTextWidth(widget.controller.text, textStyle);
 
     return AnimatedContainer(
